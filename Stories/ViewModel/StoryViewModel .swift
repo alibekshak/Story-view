@@ -23,5 +23,6 @@ class StoryViewModel: ObservableObject{
     ]
     
     // Properties
-    
+    @Published var showStory: Bool = false
+    @Published var currontStory: String = "" 
 }

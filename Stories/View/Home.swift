@@ -48,6 +48,10 @@ struct Home: View {
             }
             .navigationTitle("FlowerApp")
         }
+        .overlay(
+            StoryView()
+                .environmentObject(storyData)
+        )
     }
 }
 
@@ -89,6 +93,10 @@ struct ProfileView: View{
             .onTapGesture {
                 withAnimation{
                     bundle.isSeen = true
+                    
+                    // Saving current story
+                    storyData.currontStory = bundle.id
+                    storyData.showStory = true
                 }
             }
     }
