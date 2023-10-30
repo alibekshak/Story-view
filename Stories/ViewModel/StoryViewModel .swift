@@ -12,12 +12,12 @@ class StoryViewModel: ObservableObject{
         
         StoryBundle(profileName: "Наши акции", profileImage: "logo1", stories: [
             Story(imageURL: "back"),
-            Story(imageURL: "back")
+            Story(imageURL: "back3")
         ]),
         
         StoryBundle(profileName: "Вы", profileImage: "logo2", stories: [
             Story(imageURL: "back2"),
-            Story(imageURL: "back2")
+            Story(imageURL: "back4")
         ])
         
     ]

@@ -45,16 +45,23 @@ struct StoryCardView: View {
     
     @EnvironmentObject var storyData: StoryViewModel
     
+    @State var timer = Timer.publish(every: 0.1, on: .main, in: .common).autoconnect()
+    @State var timerProgress: CGFloat = 0
+    
     var body: some View{
         
         GeometryReader{ proxy in
             
             ZStack{
                 
-                Image(bundle.stories[0].imageURL)
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-               
+                let index = min(Int(timerProgress), bundle.stories.count - 1)
+                
+                let story = bundle.stories[index]
+                    Image(story.imageURL)
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                
+                
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
             .overlay(
@@ -88,10 +95,26 @@ struct StoryCardView: View {
             // Timer Capsule
             .overlay(
                 HStack(spacing: 5){
-                    ForEach(bundle.stories){ story in
+                    ForEach(bundle.stories.indices){ index in
                         
-                        Capsule()
-                            .fill(.gray.opacity(0.5))
+                        GeometryReader{ proxy in
+                            
+                            let width = proxy.size.width
+                            
+                            let progress = timerProgress - CGFloat(index)
+                            let  perfectProgress = min(max(progress, 0), 1)
+                            
+                            Capsule()
+                                .fill(.gray.opacity(0.5))
+                                .overlay(
+                                    Capsule()
+                                        .fill(.white)
+                                        .frame(width: width * perfectProgress)
+                                    ,alignment: .leading
+                                )
+                                
+                            
+                        }
                     }
                 }
                 .frame(height: 1.4)
@@ -100,6 +123,24 @@ struct StoryCardView: View {
             )
             // Rotation
             .rotation3DEffect(getAngle(proxy: proxy), axis: (x: 0, y: 1, z: 0), anchor: proxy.frame(in: .global).minX > 0 ? .leading : .trailing, perspective: 2.5)
+        }
+        // Reset Timer
+        .onAppear(perform: {
+            timerProgress = 0
+        })
+        .onReceive(timer){ _ in
+            
+            if storyData.currontStory == bundle.id {
+                if !bundle.isSeen {
+                    bundle.isSeen = true
+                }
+                
+                // Updating Timer
+                if timerProgress < CGFloat(bundle.stories.count){
+                    timerProgress += 0.03
+                }
+            }
+            
         }
     }
     
