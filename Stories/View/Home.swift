@@ -27,6 +27,13 @@ struct Home: View {
                     }
                     .padding()
                 }
+                
+//                ForEach(itemService.categories, id: \.id) { category in
+//                    CombinedCategoryAndItemView(categoryId: category.id, categoryName: category.name)
+//                        .environmentObject(itemService)
+//                        .environmentObject(cartOrderService)
+//                }
+                
             }
             .navigationTitle("FlowerApp")
         }
