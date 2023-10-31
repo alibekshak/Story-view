@@ -19,23 +19,6 @@ struct Home: View {
                     
                     HStack(spacing: 12){
                         
-                        Button{
-                            
-                        } label: {
-                            Image("logo1")
-                                .resizable()
-                                .aspectRatio(contentMode: .fill)
-                                .frame(width: 50, height: 50)
-                                .clipShape(Circle())
-                                .overlay(
-                                    
-                                    Image(systemName: "plus")
-                                        .padding(7)
-                                        .background(.blue, in: Circle())
-                                        .foregroundColor(.white)
-                                )
-                        }
-                        
                         ForEach($storyData.stories){ $bundle in
                             
                             ProfileView(bundle: $bundle)
@@ -43,7 +26,6 @@ struct Home: View {
                         }
                     }
                     .padding()
-                    .padding(.top, 10)
                 }
             }
             .navigationTitle("FlowerApp")
@@ -71,33 +53,39 @@ struct ProfileView: View{
     @EnvironmentObject var storyData: StoryViewModel
     
     var body: some View{
-        Image(bundle.profileImage)
-            .resizable()
-            .aspectRatio(contentMode: .fill)
-            .frame(width: 50, height: 50)
-            .clipShape(Circle())
-        // Progress Ring
-            .padding(2)
-            .background(scheme == .dark ? .black : .white, in: Circle())
-            .padding(2)
-            .background(
-                LinearGradient(colors: [
-                    .red,
-                    .orange,
-                    .red,
-                    .orange
-                ], startPoint: .top, endPoint: .bottom)
+        VStack(spacing: 7){
+            Image(bundle.profileImage)
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+                .frame(width: 50, height: 50)
                 .clipShape(Circle())
-                .opacity(bundle.isSeen ? 0 : 1)
-            )
-            .onTapGesture {
-                withAnimation{
-                    bundle.isSeen = true
-                    
-                    // Saving current story
-                    storyData.currontStory = bundle.id
-                    storyData.showStory = true
+            // Progress Ring
+                .padding(2)
+                .background(scheme == .dark ? .black : .white, in: Circle())
+                .padding(2)
+                .background(
+                    LinearGradient(colors: [
+                        .red,
+                        .orange,
+                        .red,
+                        .orange
+                    ], startPoint: .top, endPoint: .bottom)
+                    .clipShape(Circle())
+                    .opacity(bundle.isSeen ? 0 : 1)
+                )
+                .onTapGesture {
+                    withAnimation{
+                        bundle.isSeen = true
+                        
+                        // Saving current story
+                        storyData.currontStory = bundle.id
+                        storyData.showStory = true
+                    }
                 }
-            }
+            
+            Text(bundle.profileName)
+                .font(Font.system(size: 12, weight: .medium))
+                .foregroundColor(.gray)
+        }
     }
 }

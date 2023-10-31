@@ -24,9 +24,6 @@ struct StoryView: View {
             .tabViewStyle(.page(indexDisplayMode: .never))
             .frame(maxWidth: .infinity, maxHeight: .infinity)
             .background(.black)
-            // Close Button
-           
-            
             .transition(.move(edge: .bottom))
         }
     }
@@ -34,7 +31,7 @@ struct StoryView: View {
 
 struct StoryView_Previews: PreviewProvider {
     static var previews: some View {
-       ContentView()
+        ContentView()
     }
 }
 
@@ -49,24 +46,45 @@ struct StoryCardView: View {
     @State var timerProgress: CGFloat = 0
     
     var body: some View{
-        
         GeometryReader{ proxy in
-            
             ZStack{
                 
                 let index = min(Int(timerProgress), bundle.stories.count - 1)
                 
                 let story = bundle.stories[index]
-                    Image(story.imageURL)
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
                 
-                
+                Image(story.imageURL)
+                    .resizable()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
             .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+            // Tapping
             .overlay(
-               
-                HStack(spacing: 12){
+                HStack{
+                    Rectangle()
+                        .fill(.black.opacity(0.01))
+                        .onTapGesture {
+                        if (timerProgress - 1) < 0{
+                            updateStory(forward: false)
+                        } else {
+                            timerProgress = CGFloat(Int(timerProgress - 1))
+                        }
+                    }
+
+                    Rectangle()
+                        .fill(.black.opacity(0.01))
+                        .onTapGesture {
+                        if (timerProgress + 1) > CGFloat(bundle.stories.count){
+                            updateStory()
+                        } else {
+                            timerProgress = CGFloat(Int(timerProgress + 1))
+                        }
+                    }
+                }
+            )
+//            // Close Button
+            .overlay(
+                HStack(spacing: 13){
                     Image(bundle.profileImage)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
@@ -89,7 +107,7 @@ struct StoryCardView: View {
                             .foregroundColor(.white)
                     })
                 }
-                .padding()
+                    .padding()
                 ,alignment: .topTrailing
             )
             // Timer Capsule
@@ -112,13 +130,13 @@ struct StoryCardView: View {
                                         .frame(width: width * perfectProgress)
                                     ,alignment: .leading
                                 )
-                                
+                            
                             
                         }
                     }
                 }
-                .frame(height: 1.4)
-                .padding(.horizontal)
+                    .frame(height: 1.4)
+                    .padding(.horizontal)
                 ,alignment: .top
             )
             // Rotation
@@ -138,9 +156,46 @@ struct StoryCardView: View {
                 // Updating Timer
                 if timerProgress < CGFloat(bundle.stories.count){
                     timerProgress += 0.03
+                } else {
+                    updateStory()
                 }
             }
+        }
+    }
+    
+    func updateStory(forward: Bool = true){
+        let index = min(Int(timerProgress), bundle.stories.count - 1)
+        let story = bundle.stories[index]
+        
+        if !forward {
+            if let first = storyData.stories.first, first.id != bundle.id {
+                let bundleIndex = storyData.stories.firstIndex{ currentBundle in
+                    return bundle.id == currentBundle.id
+                    
+                } ?? 0
+                withAnimation{
+                    storyData.currontStory = storyData.stories[bundleIndex - 1].id
+                }
+            } else {
+                timerProgress = 0
+            }
+            return
+        }
+        
+        if let last = bundle.stories.last,last.id == story.id{
             
+            if let lastBundle = storyData.stories.last,lastBundle.id == bundle.id {
+                withAnimation{
+                    storyData.showStory = false
+                }
+            } else {
+                let bundleIndex = storyData.stories.firstIndex{ currentBundle in
+                    return bundle.id == currentBundle.id
+                } ?? 0
+                withAnimation{
+                    storyData.currontStory = storyData.stories[bundleIndex + 1].id
+                }
+            }
         }
     }
     
