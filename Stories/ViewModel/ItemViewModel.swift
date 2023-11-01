@@ -22,7 +22,7 @@ class ItemViewModel: ObservableObject {
         ShopItem(title: "Цветы в коробке", description: "Букеты", price: 9000, Image: "flower3"),
         ShopItem(title: "Мишка 1", description: "Игрушки", price: 500, Image: "bear"),
         ShopItem(title: "Мишка 2", description: "Игрушки", price: 1000, Image: "bear"),
-        ShopItem(title: "Новый товар 2", description: "Сладости", price: 2000, Image: "candy"),
-        ShopItem(title: "Новый товар 2", description: "Сладости", price: 1000, Image: "candy2"),
+        ShopItem(title: "Милка", description: "Сладости", price: 1000, Image: "candy"),
+        ShopItem(title: "Коробка сладостей", description: "Сладости", price: 3000, Image: "candy2"),
     ]
 }

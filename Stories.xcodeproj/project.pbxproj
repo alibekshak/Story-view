@@ -22,6 +22,7 @@
 		189A68362AF20B83008A064B /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 189A68302AF20B6F008A064B /* Montserrat-Bold.ttf */; };
 		189A68372AF20B86008A064B /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 189A68312AF20B6F008A064B /* Montserrat-SemiBold.ttf */; };
 		189A68382AF20B8A008A064B /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 189A682C2AF20B6F008A064B /* Roboto-Medium.ttf */; };
+		189A683B2AF219C7008A064B /* NavigationBarItemsButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 189A683A2AF219C7008A064B /* NavigationBarItemsButton.swift */; };
 		18D13E742AEF59BE001EC0B0 /* StoriesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D13E732AEF59BE001EC0B0 /* StoriesApp.swift */; };
 		18D13E762AEF59BE001EC0B0 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D13E752AEF59BE001EC0B0 /* ContentView.swift */; };
 		18D13E782AEF59BF001EC0B0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 18D13E772AEF59BF001EC0B0 /* Assets.xcassets */; };
@@ -50,6 +51,7 @@
 		189A68302AF20B6F008A064B /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		189A68312AF20B6F008A064B /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		189A68392AF20BB7008A064B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		189A683A2AF219C7008A064B /* NavigationBarItemsButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarItemsButton.swift; sourceTree = "<group>"; };
 		18D13E702AEF59BE001EC0B0 /* Stories.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Stories.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D13E732AEF59BE001EC0B0 /* StoriesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoriesApp.swift; sourceTree = "<group>"; };
 		18D13E752AEF59BE001EC0B0 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				180239212AF0FF9B0022B5D7 /* ButtonCategoryAllView.swift */,
 				1802392D2AF10BC60022B5D7 /* RecomendedItemView.swift */,
 				18F72B372AF2055B00CF1657 /* CategoryView.swift */,
+				189A683A2AF219C7008A064B /* NavigationBarItemsButton.swift */,
 			);
 			path = Additions;
 			sourceTree = "<group>";
@@ -274,6 +277,7 @@
 				1802392B2AF107450022B5D7 /* CombinedCategoryAndItemView.swift in Sources */,
 				1802392E2AF10BC60022B5D7 /* RecomendedItemView.swift in Sources */,
 				18D13E8B2AEF61DE001EC0B0 /* StoryViewModel .swift in Sources */,
+				189A683B2AF219C7008A064B /* NavigationBarItemsButton.swift in Sources */,
 				180239292AF100DD0022B5D7 /* FontExtension.swift in Sources */,
 				18D13E892AEF605C001EC0B0 /* StoryBundle.swift in Sources */,
 				18F72B382AF2055B00CF1657 /* CategoryView.swift in Sources */,

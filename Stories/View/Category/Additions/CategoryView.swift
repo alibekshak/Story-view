@@ -31,8 +31,9 @@ struct CategoryView: View {
             }
         }
         .background(Color(StringConstant.BackgroundColors.mainColor))
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationTitle(categoryName)
+        .navigationBarTitle(categoryName, displayMode: .inline)
+        .navigationBarBackButtonHidden(true)
+        .navigationBarItems(leading: NavigationBarItemsButton())
     }
 }
 
