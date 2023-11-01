@@ -17,8 +17,12 @@ class ItemViewModel: ObservableObject {
     
     
     @Published var items: [ShopItem] = [
-        ShopItem(title: "Розы", description: "Цветы", price: 7000, Image: "flower1"),
-        ShopItem(title: "Сет 51 роза", description: "Цветы", price: 14000, Image: "flower2"),
-        ShopItem(title: "Цветы в коробке", description: "Цветы", price: 9000, Image: "flower3"),
+        ShopItem(title: "Розы", description: "Букеты", price: 7000, Image: "flower1"),
+        ShopItem(title: "Сет 51 роза", description: "Букеты", price: 14000, Image: "flower2"),
+        ShopItem(title: "Цветы в коробке", description: "Букеты", price: 9000, Image: "flower3"),
+        ShopItem(title: "Мишка 1", description: "Игрушки", price: 500, Image: "bear"),
+        ShopItem(title: "Мишка 2", description: "Игрушки", price: 1000, Image: "bear"),
+        ShopItem(title: "Новый товар 2", description: "Сладости", price: 2000, Image: "candy"),
+        ShopItem(title: "Новый товар 2", description: "Сладости", price: 1000, Image: "candy2"),
     ]
 }

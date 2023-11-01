@@ -21,7 +21,9 @@ struct CategoryView: View {
                 ScrollView(.vertical, showsIndicators: false){
                     LazyVGrid(columns: layout){
                         ForEach(Array(itemViewModel.items.enumerated()), id: \.element.id){ index, item in
-                            RecomendedItemView(item: item, index: index)
+                            if item.description == categoryName{
+                                RecomendedItemView(item: item, index: index)
+                            }
                         }
                         
                     }

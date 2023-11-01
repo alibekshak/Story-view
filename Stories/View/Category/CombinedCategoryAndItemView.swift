@@ -27,7 +27,10 @@ struct CombinedCategoryAndItemView: View {
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(spacing: 8){
                     ForEach(Array(itemViewModel.items.enumerated()), id: \.element.id){ index, item in
-                        RecomendedItemView(item: item, index: index)
+                        if item.description == categoryName{
+                            RecomendedItemView(item: item, index: index)
+                        }
+                        
                     }
                 }
                 
