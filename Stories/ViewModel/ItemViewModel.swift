@@ -5,7 +5,7 @@
 //  Created by Apple on 31.10.2023.
 //
 
-import Foundation
+import SwiftUI
 
 class ItemViewModel: ObservableObject {
     

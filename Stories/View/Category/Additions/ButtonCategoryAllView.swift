@@ -26,6 +26,8 @@ struct ButtonCategoryAllView: View {
                     .font(.categoryOfItemsTitleFont)
                     .foregroundColor(Color(StringConstant.BackgroundColors.additionalInfoColor))
                 Image(systemName: "chevron.right")
+                    .foregroundColor(Color(StringConstant.BackgroundColors.additionalInfoColor))
+                
             }
             
         }

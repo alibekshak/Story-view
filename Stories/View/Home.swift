@@ -11,6 +11,8 @@ struct Home: View {
     
     @StateObject var storyData = StoryViewModel()
     
+    @EnvironmentObject var item: ItemViewModel
+    
     var body: some View {
         NavigationView{
             ScrollView(.vertical, showsIndicators: false){
@@ -28,12 +30,9 @@ struct Home: View {
                     .padding()
                 }
                 
-//                ForEach(itemService.categories, id: \.id) { category in
-//                    CombinedCategoryAndItemView(categoryId: category.id, categoryName: category.name)
-//                        .environmentObject(itemService)
-//                        .environmentObject(cartOrderService)
-//                }
-                
+                ForEach(item.categories, id: \.id) { category in
+                    CombinedCategoryAndItemView(categoryName: category.name)
+                }
             }
             .navigationTitle("FlowerApp")
         }
@@ -47,6 +46,7 @@ struct Home: View {
 struct Home_Previews: PreviewProvider {
     static var previews: some View {
         Home()
+            .environmentObject(ItemViewModel())
     }
 }
 

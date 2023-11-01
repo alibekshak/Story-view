@@ -19,8 +19,10 @@ struct CombinedCategoryAndItemView: View {
     
     var body: some View {
         VStack(spacing: 10){
-            ButtonCategoryAllView(categoryName: categoryName)
-                .padding(.horizontal, 18)
+            NavigationLink(destination: CategoryView(categoryName: categoryName)){
+                ButtonCategoryAllView(categoryName: categoryName)
+                    .padding(.horizontal, 18)
+            }
             
             ScrollView(.horizontal, showsIndicators: false){
                 HStack(spacing: 8){
@@ -30,9 +32,8 @@ struct CombinedCategoryAndItemView: View {
                 }
                 
             }
-            
-            
         }
+        .padding(.bottom, 10)
     }
 }
 
