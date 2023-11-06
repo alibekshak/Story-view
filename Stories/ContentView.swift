@@ -8,9 +8,18 @@
 import SwiftUI
 
 struct ContentView: View {
+    
     var body: some View {
-        Home()
-            .environmentObject(ItemViewModel())
+        TabView{
+            Home()
+                .environmentObject(ItemViewModel())
+                .tabItem{
+                    Label("", systemImage: "heart")
+                        
+                }
+        }
+        .accentColor(Color(StringConstant.BackgroundColors.selectedColor))
+    
     }
 }
 

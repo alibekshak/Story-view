@@ -36,10 +36,7 @@ struct Home: View {
             }
             .navigationTitle("FlowerApp")
         }
-        .overlay(
-            StoryView()
-                .environmentObject(storyData)
-        )
+
     }
 }
 
@@ -58,6 +55,7 @@ struct ProfileView: View{
     @Environment(\.colorScheme) var scheme
     
     @EnvironmentObject var storyData: StoryViewModel
+    
     
     var body: some View{
         VStack(spacing: 7){
@@ -88,6 +86,10 @@ struct ProfileView: View{
                         storyData.currontStory = bundle.id
                         storyData.showStory = true
                     }
+                }
+                .fullScreenCover(isPresented: $storyData.showStory) {
+                    StoryView()
+                        .environmentObject(storyData)
                 }
             
             Text(bundle.profileName)
